@@ -3,24 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pollo Frito Delivery en Posadas, Misiones | Choguifrits - Alitas y Combos Crujientes</title>
-<meta name="description" content="¿Buscás el mejor pollo frito en Posadas, Misiones? Pedí tu delivery en Choguifrits: combos de alitas y pechuga. Crujiente por fuera, jugoso por dentro. ¡Abrimos de noche!">
+<title>Menú y precios | Choguifrits · Pollo frito en Posadas</title>
+<meta name="description" content="Menú actualizado de Choguifrits: combos de alitas y brochets de pechuga con precios. Delivery en Posadas, martes a domingos de 20 a 00.">
+<link rel="canonical" href="https://choguifrits.com.ar/menu">
 
-<link rel="apple-touch-icon" sizes="57x57" href="img/iconos/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="img/iconos/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="img/iconos/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="img/iconos/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="img/iconos/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="img/iconos/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="img/iconos/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="img/iconos/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="img/iconos/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="img/iconos/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="img/iconos/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="img/iconos/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="img/iconos/favicon-16x16.png">
-<link rel="manifest" href="img/iconos/manifest.json">
-<meta name="msapplication-TileColor" content="#111111">
+<meta property="og:title" content="Menú de Choguifrits">
+<meta property="og:description" content="Combos de alitas y brochets de pechuga. Delivery en Posadas.">
+<meta property="og:image" content="https://choguifrits.com.ar/img/menu.jpeg">
+<meta property="og:url" content="https://choguifrits.com.ar/menu">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../img/iconos/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/iconos/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../img/iconos/apple-icon-180x180.png">
 <meta name="theme-color" content="#100D09">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,651 +23,112 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#100D09; --bg2:#1A130B; --surface:#20180E; --surface2:#291F12;
-  --gold:#FFC42E; --gold-soft:#F7D98B; --red:#E23B34;
+  --bg:#100D09; --bg2:#1A130B; --surface:#20180E;
+  --gold:#FFC42E; --red:#E23B34;
   --cream:#F6ECD8; --muted:#B29C7D; --line:rgba(255,196,46,.16);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--cream);font-family:'Inter',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
-h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:1rem;padding:14px 22px;border-radius:999px;border:none;cursor:pointer;transition:transform .15s ease,filter .15s ease;font-family:inherit}
-.btn:hover{transform:translateY(-2px)}
-.btn:disabled{opacity:.55;cursor:default;transform:none}
-.btn-wa{background:var(--red);color:#fff;box-shadow:0 8px 24px rgba(226,59,52,.35)}
-.btn-wa:hover{filter:brightness(1.06)}
-.btn-ghost{background:transparent;color:var(--cream);border:1.5px solid var(--line)}
-.btn-gold{background:var(--gold);color:#1a1206}
-.btn-full{width:100%}
 
-header{position:sticky;top:0;z-index:50;background:rgba(16,13,9,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
-.brand{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.03em;color:var(--cream)}
-.brand b{color:var(--gold)}
-.open-pill{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;padding:6px 13px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
-.open-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.open-pill.on{color:var(--gold);border-color:rgba(255,196,46,.4)}
-.open-pill.on .dot{background:#48d17a;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(72,209,122,.5)}70%{box-shadow:0 0 0 7px rgba(72,209,122,0)}100%{box-shadow:0 0 0 0 rgba(72,209,122,0)}}
-.nav .btn{padding:10px 18px;font-size:.92rem}
+.boards{display:flex;flex-direction:column;gap:14px;padding:20px 0 4px}
+.board{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
+.board img{width:100%;height:auto}
 
-.hero{position:relative;padding:64px 0 40px;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-140px;right:-120px;width:620px;height:620px;background:radial-gradient(circle,rgba(255,196,46,.22),rgba(255,196,46,0) 62%);pointer-events:none}
-.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(2.8rem,7vw,5.2rem);margin:16px 0 0}
-.hero h1 .hot{color:var(--gold)}
-.hero .lead{color:var(--muted);font-size:1.12rem;max-width:32ch;margin:20px 0 26px}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-.hero-note{margin-top:20px;font-size:.86rem;color:var(--muted);display:flex;align-items:center;gap:8px}
-.hero-note b{color:var(--cream);font-weight:600}
-.hero-visual{position:relative}
-.hero-visual .hero-menu{height:470px;width:100%;object-fit:cover;object-position:top center;border-radius:20px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.55);transform:rotate(1.4deg)}
-.hero-visual .sello{position:absolute;left:-18px;bottom:-16px;background:var(--gold);color:#1a1206;font-family:'Anton',sans-serif;font-size:.95rem;padding:12px 16px;border-radius:14px;line-height:1;transform:rotate(-5deg);box-shadow:0 10px 26px rgba(0,0,0,.4)}
-.sello small{display:block;font-family:'Inter';font-weight:700;font-size:.62rem;letter-spacing:.1em;opacity:.7;margin-bottom:3px}
+.cta{padding:18px 0 10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  font-family:inherit;font-weight:700;font-size:1.05rem;padding:16px 20px;border-radius:999px;border:none}
+.btn-wa{background:var(--red);color:#fff;box-shadow:0 8px 24px rgba(226,59,52,.32)}
+.btn svg{width:22px;height:22px;fill:currentColor}
 
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:12px 0;margin-top:28px}
-.marquee-track{display:flex;gap:34px;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite;font-family:'Anton',sans-serif;font-size:1.05rem;color:var(--gold-soft);text-transform:uppercase;letter-spacing:.05em}
-.marquee-track .star{color:var(--red)}
-@keyframes scroll{to{transform:translateX(-50%)}}
+.datos{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin-top:16px}
+.fila{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.fila:last-child{border-bottom:none}
+.fila svg{width:19px;height:19px;fill:var(--gold);flex:none}
+.fila b{font-weight:600;font-size:.94rem;display:block}
+.fila small{color:var(--muted);font-size:.82rem}
 
-.info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:44px 0}
-.info-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
-.info-card .ic{font-size:1.5rem}
-.info-card h3{font-size:1.05rem;margin:10px 0 4px;color:var(--cream)}
-.info-card p{color:var(--muted);font-size:.9rem}
+footer{text-align:center;padding:26px 16px 34px;color:var(--muted);font-size:.8rem}
+footer a{color:var(--gold);text-decoration:underline}
 
-section.blk{padding:52px 0}
-.head{margin-bottom:26px}
-.head h2{font-size:clamp(1.9rem,4.5vw,3rem);margin-top:8px}
-.head h2 em{font-style:normal;color:var(--gold)}
-.head.center{text-align:center}
-
-.menu-hint{text-align:center;color:var(--muted);font-size:.9rem;margin:-8px 0 22px}
-.menu-boards{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-.board{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 18px 44px rgba(0,0,0,.45)}
-.board img{width:100%;height:auto;display:block;cursor:zoom-in;transition:transform .25s ease}
-.board:hover img{transform:scale(1.02)}
-.menu-cta{text-align:center;margin-top:28px}
-
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.rev{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
-.rev .stars{color:var(--gold);letter-spacing:2px;font-size:1rem}
-.rev .txt{font-size:1.05rem;color:var(--cream);font-weight:500;flex:1}
-.rev .who{font-size:.82rem;color:var(--muted)}
-.rev-skel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;min-height:150px;opacity:.45}
-.rev-skel div{height:12px;background:var(--surface2);border-radius:6px;margin-bottom:10px}
-.rev-skel div:nth-child(1){width:40%}
-.rev-skel div:nth-child(2){width:100%}
-.rev-skel div:nth-child(3){width:80%}
-
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
-.card h3{color:var(--cream);font-size:1.3rem;margin-bottom:16px}
-.card .sub{color:var(--muted);font-size:.9rem;margin:-10px 0 18px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 13px;color:var(--cream);font-family:inherit;font-size:.95rem}
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
-.field select option{background:var(--bg2);color:var(--cream)}
-.field .count{text-align:right;font-size:.75rem;color:var(--muted);margin-top:4px}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-
-.alert{border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.92rem;border:1px solid}
-.alert-success{background:rgba(72,209,122,.12);border-color:rgba(72,209,122,.4);color:#8fe6b0}
-.alert-danger{background:rgba(226,59,52,.12);border-color:rgba(226,59,52,.4);color:#f0a19c}
-.alert-info{background:rgba(255,196,46,.1);border-color:var(--line);color:var(--muted);text-align:center}
-
-.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.hours{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px dashed var(--line);padding:11px 0;gap:12px}
-.hours:last-of-type{border-bottom:none}
-.hours .d{color:var(--muted);font-size:.92rem}
-.hours .h{font-family:'Anton',sans-serif;font-size:1.05rem;color:var(--gold)}
-.contact-line{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
-.contact-line:last-child{border-bottom:none}
-.contact-line .ic{font-size:1.2rem;width:26px;text-align:center}
-.contact-line b{color:var(--cream);font-weight:600}
-.contact-line small{display:block;color:var(--muted);font-size:.82rem}
-.map{margin-top:26px;border-radius:18px;overflow:hidden;border:1px solid var(--line);height:340px}
-.map iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
-
-footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
-.foot .brand{font-size:1.2rem}
-.counter{display:inline-flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:6px 12px;color:var(--muted);font-size:.82rem}
-.counter b{color:var(--gold)}
-.counter.hide{display:none}
-
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--surface2);border-top:1px solid var(--line);padding:14px 18px;font-size:.85rem;color:var(--muted)}
-.cookie-banner .cwrap{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-
-.pleg{border:none}
-.pleg>summary{display:none}
-.pleg[open]>summary{display:none}
-
-.wa-flot{position:fixed;right:14px;bottom:96px;z-index:70;width:48px;height:48px;border-radius:50%;background:#25D366;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.45);opacity:0;transform:scale(.6);transition:opacity .22s ease,transform .22s ease,bottom .22s ease}
-.wa-flot svg{width:26px;height:26px;fill:#0b3d1e}
-.wa-flot.on{opacity:1;transform:scale(1)}
-.wa-flot.sinbanner{bottom:18px}
-
-.lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.93);display:none;overflow:auto;padding:24px;text-align:center}
-.lightbox.on{display:block}
-.lightbox img{max-width:min(560px,94%);height:auto;margin:0 auto;border-radius:10px}
-.lightbox .x{position:fixed;top:16px;right:20px;font-size:2rem;color:var(--cream);cursor:pointer;line-height:1;background:none;border:none}
-
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-
-@media (max-width:840px){
-  .hero-grid{grid-template-columns:1fr;gap:28px}
-  .hero-visual{order:-1;max-width:420px}
-  .info{grid-template-columns:1fr}
-  .menu-boards{grid-template-columns:1fr;max-width:460px;margin:0 auto}
-  .rev-grid{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr}
-  .nav .brand-cta{display:none}
-  .open-pill{display:none}
-  .wa-flot{display:flex}
-
-  /* --- Reordenamiento y compactado para celular --- */
-  .wrap{display:flex;flex-direction:column}
-
-  .hero{padding:22px 0 8px}
-  .hero h1{font-size:clamp(2rem,9vw,2.6rem)}
-  .hero .lead{font-size:1rem;margin:12px 0 16px}
-  .hero-visual{display:none}
-  .hero-note{margin-top:14px}
-
-  .marquee{display:none}
-
-  section.blk{padding:26px 0}
-  .info{margin:22px 0 0}
-  .info-card{padding:14px 16px}
-  .info-card .ic{font-size:1.2rem}
-  .info-card h3{margin:6px 0 3px;font-size:1rem}
-
-  .pleg>summary{display:flex;align-items:center;justify-content:space-between;
-    list-style:none;cursor:pointer;padding:15px 16px;background:var(--surface);
-    border:1px solid var(--line);border-radius:12px;
-    font-family:'Anton',sans-serif;font-size:1.05rem;letter-spacing:.02em;
-    color:var(--cream);text-transform:uppercase}
-  .pleg>summary::-webkit-details-marker{display:none}
-  .pleg>summary .chev{width:9px;height:9px;border-right:2px solid var(--gold);
-    border-bottom:2px solid var(--gold);transform:rotate(45deg) translate(-2px,-2px);
-    transition:transform .2s ease}
-  .pleg[open]>summary .chev{transform:rotate(-135deg) translate(-2px,-2px)}
-  .pleg[open]>summary{margin-bottom:4px;border-bottom-left-radius:0;border-bottom-right-radius:0}
-  .pleg[open] .head{margin-bottom:18px}
-  .pleg .head .eyebrow{display:none}
-  .pleg .head h2{font-size:1.5rem}
-  .pleg .reveal{opacity:1;transform:none;transition:none}
-  .map{height:240px}
-}
-@media (prefers-reduced-motion:reduce){
-  .wa-flot{transition:none}
-  .pleg>summary .chev{transition:none}
-}
-@media (prefers-reduced-motion:reduce){
-  .marquee-track{animation:none}
-  .reveal{opacity:1;transform:none;transition:none}
-  .open-pill.on .dot{animation:none}
-}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <div class="brand">CHOGUI<b>FRITS</b></div>
-    <div class="open-pill" id="openPill"><span class="dot"></span><span id="openTxt">Ver horario</span></div>
-    <a data-wa="header" class="btn btn-wa brand-cta" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedí por WhatsApp</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Posadas, Misiones · Delivery de noche</span>
-      <h1>Crujiente por fuera,<br><span class="hot">jugoso</span> por dentro.</h1>
-      <p class="lead">Pollo frito de verdad: alitas y brochets de pechuga. Lo pedís por WhatsApp y te lo llevamos calentito.</p>
-      <div class="hero-cta">
-        <a data-wa="hero" class="btn btn-wa" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">🍗 Pedí ahora</a>
-        <a class="btn btn-ghost" href="#menu">Ver el menú</a>
-      </div>
-      <div class="hero-note">🕗 <span><b>Martes a domingos</b>, de 20:00 a 00:00</span></div>
-    </div>
-    <div class="hero-visual">
-      <a href="#menu"><img class="hero-menu" src="img/menu.jpeg" alt="Menú de Choguifrits" loading="eager"></a>
-      <div class="sello"><small>RECIÉN HECHO</small>AL TOQUE</div>
-    </div>
-  </div>
-</section>
-
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Alitas</span><span class="star">✦</span><span>Brochets de pechuga</span><span class="star">✦</span><span>Combos familiares</span><span class="star">✦</span><span>Delivery en Posadas</span><span class="star">✦</span>
-    <span>Alitas</span><span class="star">✦</span><span>Brochets de pechuga</span><span class="star">✦</span><span>Combos familiares</span><span class="star">✦</span><span>Delivery en Posadas</span><span class="star">✦</span>
-  </div>
-</div>
-
 <div class="wrap">
-  <div class="info" style="order:4">
-    <div class="info-card reveal"><div class="ic">🔥</div><h3>Siempre crocante</h3><p>Cocido al momento del pedido. Nada de recalentado.</p></div>
-    <div class="info-card reveal"><div class="ic">🛵</div><h3>Delivery en Posadas</h3><p>Te lo llevamos a casa. Consultá tu zona de envío por WhatsApp.</p></div>
-    <div class="info-card reveal"><div class="ic">🌙</div><h3>Abrimos de noche</h3><p>De martes a domingos, de 20 a 00.</p></div>
+
+  <div class="boards">
+    <figure class="board"><img src="../img/menu.jpeg" alt="Menú Choguifrits: combos de alitas y brochets de pechuga con precios" loading="eager"></figure>
+    <figure class="board"><img src="../img/menu1.jpeg" alt="Menú Choguifrits: mixes, porciones individuales y bebidas" loading="lazy"></figure>
   </div>
 
-  <section class="blk" id="menu" style="order:2">
-    <div class="head center reveal">
-      <span class="eyebrow">Elegí tu combo</span>
-      <h2>El <em>menú</em></h2>
-    </div>
-    <p class="menu-hint reveal">Tocá cualquier imagen para ampliarla y leer los precios.</p>
-    <div class="menu-boards">
-      <figure class="board reveal"><img src="img/menu.jpeg" alt="Menú Choguifrits: alitas, brochet de pechuga y bebidas" onclick="zoom(this.src)"></figure>
-      <figure class="board reveal"><img src="img/menu1.jpeg" alt="Menú Choguifrits: mixes, individuales y bebidas" onclick="zoom(this.src)"></figure>
-    </div>
-    <div class="menu-cta reveal">
-      <a data-wa="menu" class="btn btn-gold" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedí tu combo por WhatsApp</a>
-    </div>
-  </section>
+  <div class="cta">
+    <a class="btn btn-wa" id="btnWa" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+      Hacé tu pedido
+    </a>
+  </div>
 
-  <section class="blk" style="order:5">
-    <details class="pleg" open>
-      <summary><span>Lo que dicen</span><i class="chev"></i></summary>
-      <div class="head center reveal">
-        <span class="eyebrow">Nuestros clientes</span>
-        <h2>Lo que <em>dicen</em></h2>
-      </div>
-      <div id="revZona">
-        <div class="rev-grid">
-          <div class="rev-skel"><div></div><div></div><div></div></div>
-          <div class="rev-skel"><div></div><div></div><div></div></div>
-          <div class="rev-skel"><div></div><div></div><div></div></div>
-        </div>
-      </div>
-    </details>
-  </section>
-
-  <section class="blk" style="order:6">
-    <details class="pleg" open>
-      <summary><span>Dejá tu reseña</span><i class="chev"></i></summary>
-      <div class="head center reveal">
-        <span class="eyebrow">Contanos</span>
-        <h2>Dejá tu <em>reseña</em></h2>
-      </div>
-    <div class="form-grid">
-      <div class="card reveal">
-        <h3>¿Cómo estuvo?</h3>
-        <p class="sub">Tu reseña es anónima y se publica al instante.</p>
-        <div id="revMsg"></div>
-        <form id="revForm" novalidate>
-          <div class="hp"><input type="text" id="hp" name="comment_honeypot" tabindex="-1" autocomplete="off"></div>
-          <div class="field">
-            <label for="rating">Calificación</label>
-            <select id="rating" required>
-              <option value="">Elegí tu puntaje</option>
-              <option value="5">★★★★★ — Excelente</option>
-              <option value="4">★★★★ — Muy bueno</option>
-              <option value="3">★★★ — Bueno</option>
-              <option value="2">★★ — Regular</option>
-              <option value="1">★ — Malo</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="review_comment">Tu reseña</label>
-            <textarea id="review_comment" rows="3" maxlength="500" required></textarea>
-            <div class="count"><span id="cCount">0</span>/500</div>
-          </div>
-          <button type="submit" id="revBtn" class="btn btn-gold btn-full">Enviar reseña</button>
-        </form>
-      </div>
-
-      <div class="card reveal">
-        <h3>¿Querés pedir?</h3>
-        <p class="sub">Los pedidos y las consultas los tomamos directamente por WhatsApp. Es la vía más rápida.</p>
-        <a data-wa="tarjeta" class="btn btn-wa btn-full" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" style="margin-bottom:12px">💬 Escribinos por WhatsApp</a>
-        <a class="btn btn-ghost btn-full" href="https://www.instagram.com/choguifrits/" target="_blank" rel="noopener">📸 Seguinos en Instagram</a>
-      </div>
+  <div class="datos">
+    <div class="fila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5"/></svg>
+      <span><b>Perito Moreno 3962</b><small>Posadas, Misiones</small></span>
     </div>
-    </details>
-  </section>
+    <div class="fila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm2 5h14v2H5zm-2 5h18v2H3z"/></svg>
+      <span><b>Delivery según zona</b><small>Consultá tu barrio por WhatsApp</small></span>
+    </div>
+  </div>
 
-  <section class="blk" style="order:7">
-    <details class="pleg" open>
-      <summary><span>Horarios y ubicación</span><i class="chev"></i></summary>
-      <div class="head center reveal">
-        <span class="eyebrow">Estamos cerca</span>
-        <h2>Horarios y <em>ubicación</em></h2>
-      </div>
-    <div class="foot-grid">
-      <div class="card reveal">
-        <div class="hours"><span class="d">Martes a Domingos</span><span class="h">20:00 – 00:00</span></div>
-        <div class="hours"><span class="d">Lunes</span><span class="h" style="color:var(--muted)">Cerrado</span></div>
-      </div>
-      <div class="card reveal">
-        <a data-wa="contacto" class="contact-line" href="https://wa.me/5493764160462" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>WhatsApp</b><small>+54 9 3764 16-0462</small></span></a>
-        <div class="contact-line"><span class="ic">📍</span><span><b>Dirección</b><small>Perito Moreno 3962, Posadas, Misiones</small></span></div>
-        <div class="contact-line"><span class="ic">🛵</span><span><b>Envíos</b><small>Delivery según zona · consultá por WhatsApp</small></span></div>
-        <a class="contact-line" href="https://www.instagram.com/choguifrits/" target="_blank" rel="noopener"><span class="ic">📸</span><span><b>Instagram</b><small>@choguifrits</small></span></a>
-      </div>
-    </div>
-    <div class="map reveal">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3542.6865009898897!2d-55.905484623794365!3d-27.385504513125472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9457be5a9b3eabb9%3A0xc7d8eaf0b9f16436!2sPerito%20Moreno%203962%2C%20N3301MBF%20Posadas%2C%20Misiones!5e0!3m2!1ses-419!2sar!4v1755969254240!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Choguifrits"></iframe>
-    </div>
-    </details>
-  </section>
 </div>
 
 <footer>
-  <div class="wrap foot">
-    <div class="brand">CHOGUI<b>FRITS</b></div>
-    <div>© <span id="anio"></span> Choguifrits · Pollo frito delivery · Posadas, Misiones</div>
-    <div class="counter hide" id="counter">👁 <span>Visitas: <b id="vTotal">—</b></span><span>Hoy: <b id="vHoy">—</b></span></div>
-  </div>
+  <a href="../">Ver el sitio completo</a>
+  <div style="margin-top:8px">© <span id="anio"></span> Choguifrits · Posadas, Misiones</div>
 </footer>
 
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cwrap">
-    <p style="margin:0">Usamos almacenamiento local para mejorar tu experiencia y contar las visitas. Si seguís navegando, aceptás su uso.</p>
-    <button id="acceptCookies" class="btn btn-gold" style="padding:9px 18px;font-size:.9rem">Aceptar</button>
-  </div>
-</div>
-
-<a data-wa="flotante" class="wa-flot" id="waFlot" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Pedí por WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-</a>
-
-<div class="lightbox" id="lb" onclick="cerrarZoom(event)"><button class="x" onclick="cerrarZoom(event)" aria-label="Cerrar">&times;</button><img id="lbimg" src="" alt="Menú ampliado"></div>
 
 <script>
-/* ============================================================
-   CONFIGURACIÓN DE SUPABASE
-   La anon key es pública por diseño: viaja al navegador y está
-   protegida por las políticas RLS de la tabla `resenas`.
-   NUNCA pongas acá la service_role.
-   ============================================================ */
-var SB_URL = 'https://zsdkjifiumcsvowwnvjm.supabase.co';
-var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZGtqaWZpdW1jc3Zvd3dudmptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4MzAyMzIsImV4cCI6MjEwMjQwNjIzMn0.Q3c9M2Dr-9PbroLudL7_55_YTDSx8LOJTItPLvkQgy8';
+var SB_URL='https://zsdkjifiumcsvowwnvjm.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZGtqaWZpdW1jc3Zvd3dudmptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4MzAyMzIsImV4cCI6MjEwMjQwNjIzMn0.Q3c9M2Dr-9PbroLudL7_55_YTDSx8LOJTItPLvkQgy8';
+var SB_HEADERS={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
 
-var SB_HEADERS = {
-  'apikey': SB_KEY,
-  'Authorization': 'Bearer ' + SB_KEY,
-  'Content-Type': 'application/json'
-};
-
-function esc(s){
-  return String(s).replace(/[&<>"']/g, function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-  });
+function dispositivo(){
+  var a=window.innerWidth||document.documentElement.clientWidth;
+  return a<840?'celular':(a<1200?'tablet':'escritorio');
+}
+function origen(){
+  var r=document.referrer||'';
+  if(!r) return 'directo';
+  var h; try{h=new URL(r).hostname.replace(/^www\./,'');}catch(e){return 'otro';}
+  if(h.indexOf(location.hostname)!==-1) return 'sitio';
+  if(/whatsapp|wa\.me/.test(h))        return 'whatsapp';
+  if(/google\./.test(h))               return 'google';
+  if(/instagram/.test(h))              return 'instagram';
+  if(/facebook|fb\./.test(h))          return 'facebook';
+  return h;
+}
+function evento(tipo,detalle){
+  try{
+    fetch(SB_URL+'/rest/v1/eventos',{method:'POST',headers:SB_HEADERS,keepalive:true,
+      body:JSON.stringify({tipo:tipo,origen:sessionStorage.getItem('origenMenu')||origen(),
+        detalle:detalle,dispositivo:dispositivo()})}).catch(function(){});
+  }catch(e){}
 }
 
-/* ---------- RESEÑAS: leer ---------- */
-function fechaCorta(iso){
-  var d = new Date(iso);
-  if (isNaN(d)) return '';
-  var p = function(n){ return (n<10?'0':'') + n; };
-  return p(d.getDate()) + '/' + p(d.getMonth()+1) + '/' + d.getFullYear();
+if(!sessionStorage.getItem('origenMenu')){
+  sessionStorage.setItem('origenMenu',origen());
+  evento('visita','pagina_menu');
 }
-
-function pintarResenas(lista){
-  var zona = document.getElementById('revZona');
-  if (!lista || !lista.length){
-    zona.innerHTML = '<div class="alert alert-info">Todavía no hay reseñas. ¡Sé el primero en dejar una!</div>';
-    return;
-  }
-  var html = '<div class="rev-grid">';
-  for (var i=0; i<lista.length; i++){
-    var r = lista[i];
-    var n = Math.max(1, Math.min(5, parseInt(r.calificacion,10) || 0));
-    html += '<div class="rev reveal in">'
-          +   '<div class="stars" aria-label="' + n + ' de 5 estrellas">' + new Array(n+1).join('★') + '</div>'
-          +   '<p class="txt">"' + esc(r.comentario) + '"</p>'
-          +   '<div class="who">Reseña anónima · ' + fechaCorta(r.creado_at) + '</div>'
-          + '</div>';
-  }
-  html += '</div>';
-  zona.innerHTML = html;
-}
-
-function cargarResenas(){
-  var url = SB_URL + '/rest/v1/resenas?select=calificacion,comentario,creado_at&order=creado_at.desc&limit=9';
-  fetch(url, { headers: SB_HEADERS })
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(pintarResenas)
-    .catch(function(){
-      document.getElementById('revZona').innerHTML =
-        '<div class="alert alert-info">No pudimos cargar las reseñas en este momento.</div>';
-    });
-}
-
-/* ---------- RESEÑAS: enviar ---------- */
-(function(){
-  var form = document.getElementById('revForm');
-  var btn  = document.getElementById('revBtn');
-  var msg  = document.getElementById('revMsg');
-  var txt  = document.getElementById('review_comment');
-  var cnt  = document.getElementById('cCount');
-
-  txt.addEventListener('input', function(){ cnt.textContent = txt.value.length; });
-
-  function aviso(tipo, texto){
-    msg.innerHTML = '<div class="alert alert-' + tipo + '">' + texto + '</div>';
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    if (document.getElementById('hp').value) return;   // honeypot
-
-    var rating = parseInt(document.getElementById('rating').value, 10);
-    var texto  = txt.value.trim();
-
-    if (!rating || rating < 1 || rating > 5){
-      aviso('danger', 'Elegí una calificación de 1 a 5 estrellas.'); return;
-    }
-    if (texto.length < 1 || texto.length > 500){
-      aviso('danger', 'La reseña tiene que tener entre 1 y 500 caracteres.'); return;
-    }
-    if (localStorage.getItem('resenaEnviada')){
-      aviso('info', 'Ya dejaste una reseña. ¡Gracias!'); return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
-    msg.innerHTML = '';
-
-    fetch(SB_URL + '/rest/v1/resenas', {
-      method: 'POST',
-      headers: SB_HEADERS,
-      body: JSON.stringify({ calificacion: rating, comentario: texto })
-    })
-    .then(function(r){ if(!r.ok) throw new Error(r.status); })
-    .then(function(){
-      localStorage.setItem('resenaEnviada', '1');
-      aviso('success', '¡Gracias por tu reseña!');
-      form.reset();
-      cnt.textContent = '0';
-      cargarResenas();
-    })
-    .catch(function(){
-      aviso('danger', 'Hubo un problema al guardar tu reseña. Probá de nuevo en un rato.');
-    })
-    .then(function(){
-      btn.disabled = false;
-      btn.textContent = 'Enviar reseña';
-    });
-  });
-})();
-
-/* ---------- CONTADOR DE VISITAS ----------
-   Se cuenta una vez por sesión; en recargas se muestran los
-   números cacheados para no inflar el contador.              */
-(function(){
-  var cont = document.getElementById('counter');
-  function mostrar(total, hoy){
-    document.getElementById('vTotal').textContent = total;
-    document.getElementById('vHoy').textContent = hoy;
-    cont.classList.remove('hide');
-  }
-
-  var cache = sessionStorage.getItem('visitas');
-  if (cache){
-    try { var c = JSON.parse(cache); mostrar(c.total, c.hoy); return; } catch(e){}
-  }
-
-  fetch(SB_URL + '/rest/v1/rpc/registrar_visita', { method:'POST', headers: SB_HEADERS })
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(d){
-      var fila = Array.isArray(d) ? d[0] : d;
-      if (!fila) return;
-      sessionStorage.setItem('visitas', JSON.stringify({ total: fila.total, hoy: fila.hoy }));
-      mostrar(fila.total, fila.hoy);
-    })
-    .catch(function(){ /* si falla, el contador queda oculto */ });
-})();
-
-/* ---------- Año del footer ---------- */
-document.getElementById('anio').textContent = new Date().getFullYear();
-
-/* ---------- "Abierto ahora": Mar a Dom 20:00–00:00 ---------- */
-(function(){
-  var pill=document.getElementById('openPill'), txt=document.getElementById('openTxt');
-  var now=new Date(), d=now.getDay(), h=now.getHours();
-  var abierto=(d!==1)&&h>=20;
-  if(abierto){ pill.classList.add('on'); txt.textContent='Abierto ahora'; }
-  else{ txt.textContent='Cerrado · abre 20 h'; }
-})();
-
-/* ---------- Reveal on scroll ---------- */
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
-  els.forEach(function(e){io.observe(e)});
-})();
-
-/* ---------- Lightbox menú ---------- */
-function zoom(src){var lb=document.getElementById('lb');document.getElementById('lbimg').src=src;lb.classList.add('on');document.body.style.overflow='hidden';}
-function cerrarZoom(e){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarZoom();});
-
-/* ============================================================
-   MEDICIÓN DE EVENTOS
-   Anota en la tabla `eventos` de dónde llegó la visita y qué
-   botones de WhatsApp se tocan. No guarda nada que identifique
-   a la persona: solo origen y qué se tocó.
-   ============================================================ */
-function detectarOrigen(){
-  var r = document.referrer || '';
-  if (!r) return 'directo';
-  var h;
-  try { h = new URL(r).hostname.replace(/^www\./,''); }
-  catch(e){ return 'otro'; }
-
-  if (h.indexOf(location.hostname) !== -1) return null;      // navegación interna
-  if (/google\./.test(h))                   return 'google';
-  if (/instagram\.com|l\.instagram/.test(h))  return 'instagram';
-  if (/facebook\.com|fb\.|l\.facebook/.test(h)) return 'facebook';
-  if (/whatsapp|wa\.me/.test(h))            return 'whatsapp';
-  if (/bing\./.test(h))                     return 'bing';
-  if (/tiktok/.test(h))                     return 'tiktok';
-  return h;                                                   // cualquier otro, el dominio
-}
-
-function detectarDispositivo(){
-  var a = window.innerWidth || document.documentElement.clientWidth;
-  if (a < 840)  return 'celular';
-  if (a < 1200) return 'tablet';
-  return 'escritorio';
-}
-
-function registrarEvento(tipo, detalle){
-  try {
-    var cuerpo = JSON.stringify({
-      tipo: tipo,
-      origen: sessionStorage.getItem('origen') || 'directo',
-      detalle: detalle || null,
-      dispositivo: detectarDispositivo()
-    });
-    // keepalive: la petición sobrevive aunque la página se cierre al abrir WhatsApp
-    fetch(SB_URL + '/rest/v1/eventos', {
-      method: 'POST',
-      headers: SB_HEADERS,
-      body: cuerpo,
-      keepalive: true
-    }).catch(function(){});
-  } catch(e){}
-}
-
-/* Origen: se calcula una vez por sesión y se registra la visita */
-(function(){
-  if (!sessionStorage.getItem('origen')){
-    var o = detectarOrigen();
-    if (o){
-      sessionStorage.setItem('origen', o);
-      registrarEvento('visita', null);
-    }
-  }
-})();
-
-/* Clics en cualquier enlace a WhatsApp */
-(function(){
-  document.addEventListener('click', function(e){
-    var a = e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
-    if (!a) return;
-    var d = a.getAttribute('data-wa') || 'otro';
-    registrarEvento('click_whatsapp', d);
-  }, true);
-})();
-
-/* ---------- Secciones plegables (solo celular) ----------
-   En el HTML van con `open` para que sigan visibles en escritorio
-   y si el JS falla. En celular se cierran al cargar. */
-(function(){
-  if (window.innerWidth >= 840) return;
-  var ds = document.querySelectorAll('details.pleg');
-  for (var i=0; i<ds.length; i++) ds[i].removeAttribute('open');
-})();
-
-/* ---------- Botón flotante de WhatsApp (solo celular) ---------- */
-(function(){
-  var wa=document.getElementById('waFlot');
-  var disparo=document.querySelector('.marquee');   // aparece al pasar el hero
-  if(!wa||!disparo) return;
-
-  function chequear(){
-    var pasoElHero = disparo.getBoundingClientRect().bottom < 0;
-    wa.classList.toggle('on', pasoElHero);
-  }
-  window.addEventListener('scroll', chequear, {passive:true});
-  chequear();
-
-  window.ajustarWaFlot=function(hayBanner){
-    wa.classList.toggle('sinbanner', !hayBanner);
-  };
-})();
-
-/* ---------- Cookies ---------- */
-document.addEventListener('DOMContentLoaded',function(){
-  var banner=document.getElementById('cookieBanner'), btn=document.getElementById('acceptCookies');
-  var aceptado=localStorage.getItem('cookieAccepted');
-  if(aceptado){ banner.style.display='none'; }
-  if(window.ajustarWaFlot) window.ajustarWaFlot(!aceptado);
-  btn.addEventListener('click',function(){
-    localStorage.setItem('cookieAccepted','true');
-    banner.style.display='none';
-    if(window.ajustarWaFlot) window.ajustarWaFlot(false);
-  });
+document.getElementById('btnWa').addEventListener('click',function(){
+  evento('click_whatsapp','pagina_menu');
 });
 
-/* ---------- Arranque ---------- */
-cargarResenas();
+document.getElementById('anio').textContent=new Date().getFullYear();
+
 </script>
 </body>
 </html>
