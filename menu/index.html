@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú y precios | Choguifrits · Pollo frito en Posadas</title>
+<meta name="description" content="Menú actualizado de Choguifrits: combos de alitas y brochets de pechuga con precios. Delivery en Posadas, martes a domingos de 20 a 00.">
+<link rel="canonical" href="https://choguifrits.com.ar/menu">
+
+<meta property="og:title" content="Menú de Choguifrits">
+<meta property="og:description" content="Combos de alitas y brochets de pechuga. Delivery en Posadas.">
+<meta property="og:image" content="https://choguifrits.com.ar/img/menu.jpeg">
+<meta property="og:url" content="https://choguifrits.com.ar/menu">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../img/iconos/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/iconos/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../img/iconos/apple-icon-180x180.png">
+<meta name="theme-color" content="#100D09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://zsdkjifiumcsvowwnvjm.supabase.co">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#100D09; --bg2:#1A130B; --surface:#20180E;
+  --gold:#FFC42E; --red:#E23B34;
+  --cream:#F6ECD8; --muted:#B29C7D; --line:rgba(255,196,46,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+h1{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+.top{text-align:center;padding:22px 0 16px}
+.brand{font-family:'Anton',sans-serif;font-size:1.7rem;letter-spacing:.03em}
+.brand b{color:var(--gold)}
+h1{font-size:1.5rem;margin-top:14px}
+h1 em{font-style:normal;color:var(--gold)}
+.estado{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;
+  padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-top:12px}
+.estado .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.estado.on{color:var(--gold);border-color:rgba(255,196,46,.42)}
+.estado.on .dot{background:#48d17a}
+.horario{font-size:.85rem;color:var(--muted);margin-top:9px}
+
+.boards{display:flex;flex-direction:column;gap:14px;padding:6px 0 4px}
+.board{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
+.board img{width:100%;height:auto;cursor:zoom-in}
+.hint{text-align:center;font-size:.8rem;color:var(--muted);padding:10px 0 2px}
+
+.cta{padding:18px 0 10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  font-family:inherit;font-weight:700;font-size:1.05rem;padding:16px 20px;border-radius:999px;border:none}
+.btn-wa{background:var(--red);color:#fff;box-shadow:0 8px 24px rgba(226,59,52,.32)}
+.btn svg{width:22px;height:22px;fill:currentColor}
+
+.datos{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin-top:16px}
+.fila{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.fila:last-child{border-bottom:none}
+.fila svg{width:19px;height:19px;fill:var(--gold);flex:none}
+.fila b{font-weight:600;font-size:.94rem;display:block}
+.fila small{color:var(--muted);font-size:.82rem}
+
+footer{text-align:center;padding:26px 16px 34px;color:var(--muted);font-size:.8rem}
+footer a{color:var(--gold);text-decoration:underline}
+
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);display:none;overflow:auto;padding:16px;text-align:center}
+.lb.on{display:block}
+.lb img{max-width:100%;height:auto;margin:0 auto;border-radius:8px}
+.lb .x{position:fixed;top:12px;right:16px;font-size:2.2rem;color:var(--cream);background:none;border:none;line-height:1;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">CHOGUI<b>FRITS</b></div>
+    <h1>Menú y <em>precios</em></h1>
+    <div class="estado" id="estado"><span class="dot"></span><span id="estadoTxt">Ver horario</span></div>
+    <div class="horario">Martes a domingos, de 20:00 a 00:00</div>
+  </div>
+
+  <p class="hint">Tocá una imagen para ampliarla.</p>
+
+  <div class="boards">
+    <figure class="board"><img src="../img/menu.jpeg" alt="Menú Choguifrits: combos de alitas y brochets de pechuga con precios" onclick="zoom(this.src)" loading="eager"></figure>
+    <figure class="board"><img src="../img/menu1.jpeg" alt="Menú Choguifrits: mixes, porciones individuales y bebidas" onclick="zoom(this.src)" loading="lazy"></figure>
+  </div>
+
+  <div class="cta">
+    <a class="btn btn-wa" id="btnWa" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+      Hacé tu pedido
+    </a>
+  </div>
+
+  <div class="datos">
+    <div class="fila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5"/></svg>
+      <span><b>Perito Moreno 3962</b><small>Posadas, Misiones</small></span>
+    </div>
+    <div class="fila">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm2 5h14v2H5zm-2 5h18v2H3z"/></svg>
+      <span><b>Delivery según zona</b><small>Consultá tu barrio por WhatsApp</small></span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a href="../">Ver el sitio completo</a>
+  <div style="margin-top:8px">© <span id="anio"></span> Choguifrits · Posadas, Misiones</div>
+</footer>
+
+<div class="lb" id="lb" onclick="cerrar()"><button class="x" onclick="cerrar()" aria-label="Cerrar">&times;</button><img id="lbimg" src="" alt="Menú ampliado"></div>
+
+<script>
+var SB_URL='https://zsdkjifiumcsvowwnvjm.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZGtqaWZpdW1jc3Zvd3dudmptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4MzAyMzIsImV4cCI6MjEwMjQwNjIzMn0.Q3c9M2Dr-9PbroLudL7_55_YTDSx8LOJTItPLvkQgy8';
+var SB_HEADERS={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+
+function dispositivo(){
+  var a=window.innerWidth||document.documentElement.clientWidth;
+  return a<840?'celular':(a<1200?'tablet':'escritorio');
+}
+function origen(){
+  var r=document.referrer||'';
+  if(!r) return 'directo';
+  var h; try{h=new URL(r).hostname.replace(/^www\./,'');}catch(e){return 'otro';}
+  if(h.indexOf(location.hostname)!==-1) return 'sitio';
+  if(/whatsapp|wa\.me/.test(h))        return 'whatsapp';
+  if(/google\./.test(h))               return 'google';
+  if(/instagram/.test(h))              return 'instagram';
+  if(/facebook|fb\./.test(h))          return 'facebook';
+  return h;
+}
+function evento(tipo,detalle){
+  try{
+    fetch(SB_URL+'/rest/v1/eventos',{method:'POST',headers:SB_HEADERS,keepalive:true,
+      body:JSON.stringify({tipo:tipo,origen:sessionStorage.getItem('origenMenu')||origen(),
+        detalle:detalle,dispositivo:dispositivo()})}).catch(function(){});
+  }catch(e){}
+}
+
+if(!sessionStorage.getItem('origenMenu')){
+  sessionStorage.setItem('origenMenu',origen());
+  evento('visita','pagina_menu');
+}
+document.getElementById('btnWa').addEventListener('click',function(){
+  evento('click_whatsapp','pagina_menu');
+});
+
+(function(){
+  var p=document.getElementById('estado'),t=document.getElementById('estadoTxt');
+  var n=new Date(),d=n.getDay(),h=n.getHours();
+  if((d!==1)&&h>=20){p.classList.add('on');t.textContent='Abierto ahora';}
+  else{t.textContent='Cerrado · abre 20 h';}
+})();
+
+document.getElementById('anio').textContent=new Date().getFullYear();
+
+function zoom(s){var l=document.getElementById('lb');document.getElementById('lbimg').src=s;l.classList.add('on');document.body.style.overflow='hidden';}
+function cerrar(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
+</script>
+</body>
+</html>
