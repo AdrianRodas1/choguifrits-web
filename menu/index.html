@@ -34,10 +34,9 @@ img{max-width:100%;display:block}
 .wrap{max-width:560px;margin:0 auto;padding:0 16px}
 
 
-.boards{display:flex;flex-direction:column;gap:14px;padding:6px 0 4px}
+.boards{display:flex;flex-direction:column;gap:14px;padding:20px 0 4px}
 .board{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
-.board img{width:100%;height:auto;cursor:zoom-in}
-.hint{text-align:center;font-size:.8rem;color:var(--muted);padding:20px 0 10px}
+.board img{width:100%;height:auto}
 
 .cta{padding:18px 0 10px}
 .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
@@ -55,21 +54,15 @@ img{max-width:100%;display:block}
 footer{text-align:center;padding:26px 16px 34px;color:var(--muted);font-size:.8rem}
 footer a{color:var(--gold);text-decoration:underline}
 
-.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);display:none;overflow:auto;padding:16px;text-align:center}
-.lb.on{display:block}
-.lb img{max-width:100%;height:auto;margin:0 auto;border-radius:8px}
-.lb .x{position:fixed;top:12px;right:16px;font-size:2.2rem;color:var(--cream);background:none;border:none;line-height:1;cursor:pointer}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 
-  <p class="hint">Tocá una imagen para ampliarla.</p>
-
   <div class="boards">
-    <figure class="board"><img src="../img/menu.jpeg" alt="Menú Choguifrits: combos de alitas y brochets de pechuga con precios" onclick="zoom(this.src)" loading="eager"></figure>
-    <figure class="board"><img src="../img/menu1.jpeg" alt="Menú Choguifrits: mixes, porciones individuales y bebidas" onclick="zoom(this.src)" loading="lazy"></figure>
+    <figure class="board"><img src="../img/menu.jpeg" alt="Menú Choguifrits: combos de alitas y brochets de pechuga con precios" loading="eager"></figure>
+    <figure class="board"><img src="../img/menu1.jpeg" alt="Menú Choguifrits: mixes, porciones individuales y bebidas" loading="lazy"></figure>
   </div>
 
   <div class="cta">
@@ -97,7 +90,6 @@ footer a{color:var(--gold);text-decoration:underline}
   <div style="margin-top:8px">© <span id="anio"></span> Choguifrits · Posadas, Misiones</div>
 </footer>
 
-<div class="lb" id="lb" onclick="cerrar()"><button class="x" onclick="cerrar()" aria-label="Cerrar">&times;</button><img id="lbimg" src="" alt="Menú ampliado"></div>
 
 <script>
 var SB_URL='https://zsdkjifiumcsvowwnvjm.supabase.co';
@@ -137,9 +129,6 @@ document.getElementById('btnWa').addEventListener('click',function(){
 
 document.getElementById('anio').textContent=new Date().getFullYear();
 
-function zoom(s){var l=document.getElementById('lb');document.getElementById('lbimg').src=s;l.classList.add('on');document.body.style.overflow='hidden';}
-function cerrar(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrar();});
 </script>
 </body>
 </html>
