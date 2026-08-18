@@ -150,6 +150,10 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:80;background:var(--surface2);border-top:1px solid var(--line);padding:14px 18px;font-size:.85rem;color:var(--muted)}
 .cookie-banner .cwrap{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
+.pleg{border:none}
+.pleg>summary{display:none}
+.pleg[open]>summary{display:none}
+
 .wa-flot{position:fixed;right:14px;bottom:96px;z-index:70;width:48px;height:48px;border-radius:50%;background:#25D366;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.45);opacity:0;transform:scale(.6);transition:opacity .22s ease,transform .22s ease,bottom .22s ease}
 .wa-flot svg{width:26px;height:26px;fill:#0b3d1e}
 .wa-flot.on{opacity:1;transform:scale(1)}
@@ -174,9 +178,44 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   .nav .brand-cta{display:none}
   .open-pill{display:none}
   .wa-flot{display:flex}
+
+  /* --- Reordenamiento y compactado para celular --- */
+  .wrap{display:flex;flex-direction:column}
+
+  .hero{padding:22px 0 8px}
+  .hero h1{font-size:clamp(2rem,9vw,2.6rem)}
+  .hero .lead{font-size:1rem;margin:12px 0 16px}
+  .hero-visual{display:none}
+  .hero-note{margin-top:14px}
+
+  .marquee{display:none}
+
+  section.blk{padding:26px 0}
+  .info{margin:22px 0 0}
+  .info-card{padding:14px 16px}
+  .info-card .ic{font-size:1.2rem}
+  .info-card h3{margin:6px 0 3px;font-size:1rem}
+
+  .pleg>summary{display:flex;align-items:center;justify-content:space-between;
+    list-style:none;cursor:pointer;padding:15px 16px;background:var(--surface);
+    border:1px solid var(--line);border-radius:12px;
+    font-family:'Anton',sans-serif;font-size:1.05rem;letter-spacing:.02em;
+    color:var(--cream);text-transform:uppercase}
+  .pleg>summary::-webkit-details-marker{display:none}
+  .pleg>summary .chev{width:9px;height:9px;border-right:2px solid var(--gold);
+    border-bottom:2px solid var(--gold);transform:rotate(45deg) translate(-2px,-2px);
+    transition:transform .2s ease}
+  .pleg[open]>summary .chev{transform:rotate(-135deg) translate(-2px,-2px)}
+  .pleg[open]>summary{margin-bottom:4px;border-bottom-left-radius:0;border-bottom-right-radius:0}
+  .pleg[open] .head{margin-bottom:18px}
+  .pleg .head .eyebrow{display:none}
+  .pleg .head h2{font-size:1.5rem}
+  .pleg .reveal{opacity:1;transform:none;transition:none}
+  .map{height:240px}
 }
 @media (prefers-reduced-motion:reduce){
   .wa-flot{transition:none}
+  .pleg>summary .chev{transition:none}
 }
 @media (prefers-reduced-motion:reduce){
   .marquee-track{animation:none}
@@ -222,13 +261,13 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 </div>
 
 <div class="wrap">
-  <div class="info">
+  <div class="info" style="order:4">
     <div class="info-card reveal"><div class="ic">🔥</div><h3>Siempre crocante</h3><p>Cocido al momento del pedido. Nada de recalentado.</p></div>
     <div class="info-card reveal"><div class="ic">🛵</div><h3>Delivery en Posadas</h3><p>Te lo llevamos a casa. Consultá tu zona de envío por WhatsApp.</p></div>
     <div class="info-card reveal"><div class="ic">🌙</div><h3>Abrimos de noche</h3><p>De martes a domingos, de 20 a 00.</p></div>
   </div>
 
-  <section class="blk" id="menu">
+  <section class="blk" id="menu" style="order:2">
     <div class="head center reveal">
       <span class="eyebrow">Elegí tu combo</span>
       <h2>El <em>menú</em></h2>
@@ -243,25 +282,30 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
     </div>
   </section>
 
-  <section class="blk">
-    <div class="head center reveal">
-      <span class="eyebrow">Nuestros clientes</span>
-      <h2>Lo que <em>dicen</em></h2>
-    </div>
-    <div id="revZona">
-      <div class="rev-grid">
-        <div class="rev-skel"><div></div><div></div><div></div></div>
-        <div class="rev-skel"><div></div><div></div><div></div></div>
-        <div class="rev-skel"><div></div><div></div><div></div></div>
+  <section class="blk" style="order:5">
+    <details class="pleg" open>
+      <summary><span>Lo que dicen</span><i class="chev"></i></summary>
+      <div class="head center reveal">
+        <span class="eyebrow">Nuestros clientes</span>
+        <h2>Lo que <em>dicen</em></h2>
       </div>
-    </div>
+      <div id="revZona">
+        <div class="rev-grid">
+          <div class="rev-skel"><div></div><div></div><div></div></div>
+          <div class="rev-skel"><div></div><div></div><div></div></div>
+          <div class="rev-skel"><div></div><div></div><div></div></div>
+        </div>
+      </div>
+    </details>
   </section>
 
-  <section class="blk">
-    <div class="head center reveal">
-      <span class="eyebrow">Contanos</span>
-      <h2>Dejá tu <em>reseña</em></h2>
-    </div>
+  <section class="blk" style="order:6">
+    <details class="pleg" open>
+      <summary><span>Dejá tu reseña</span><i class="chev"></i></summary>
+      <div class="head center reveal">
+        <span class="eyebrow">Contanos</span>
+        <h2>Dejá tu <em>reseña</em></h2>
+      </div>
     <div class="form-grid">
       <div class="card reveal">
         <h3>¿Cómo estuvo?</h3>
@@ -296,13 +340,16 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
         <a class="btn btn-ghost btn-full" href="https://www.instagram.com/choguifrits/" target="_blank" rel="noopener">📸 Seguinos en Instagram</a>
       </div>
     </div>
+    </details>
   </section>
 
-  <section class="blk">
-    <div class="head center reveal">
-      <span class="eyebrow">Estamos cerca</span>
-      <h2>Horarios y <em>ubicación</em></h2>
-    </div>
+  <section class="blk" style="order:7">
+    <details class="pleg" open>
+      <summary><span>Horarios y ubicación</span><i class="chev"></i></summary>
+      <div class="head center reveal">
+        <span class="eyebrow">Estamos cerca</span>
+        <h2>Horarios y <em>ubicación</em></h2>
+      </div>
     <div class="foot-grid">
       <div class="card reveal">
         <div class="hours"><span class="d">Martes a Domingos</span><span class="h">20:00 – 00:00</span></div>
@@ -318,6 +365,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
     <div class="map reveal">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3542.6865009898897!2d-55.905484623794365!3d-27.385504513125472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9457be5a9b3eabb9%3A0xc7d8eaf0b9f16436!2sPerito%20Moreno%203962%2C%20N3301MBF%20Posadas%2C%20Misiones!5e0!3m2!1ses-419!2sar!4v1755969254240!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Choguifrits"></iframe>
     </div>
+    </details>
   </section>
 </div>
 
@@ -581,6 +629,15 @@ function registrarEvento(tipo, detalle){
     var d = a.getAttribute('data-wa') || 'otro';
     registrarEvento('click_whatsapp', d);
   }, true);
+})();
+
+/* ---------- Secciones plegables (solo celular) ----------
+   En el HTML van con `open` para que sigan visibles en escritorio
+   y si el JS falla. En celular se cierran al cargar. */
+(function(){
+  if (window.innerWidth >= 840) return;
+  var ds = document.querySelectorAll('details.pleg');
+  for (var i=0; i<ds.length; i++) ds[i].removeAttribute('open');
 })();
 
 /* ---------- Botón flotante de WhatsApp (solo celular) ---------- */
