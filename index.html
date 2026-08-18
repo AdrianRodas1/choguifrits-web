@@ -643,14 +643,20 @@ function registrarEvento(tipo, detalle){
 /* ---------- Botón flotante de WhatsApp (solo celular) ---------- */
 (function(){
   var wa=document.getElementById('waFlot');
-  var disparo=document.querySelector('.marquee');   // aparece al pasar el hero
-  if(!wa||!disparo) return;
+  var disparo=document.querySelector('.hero');   // aparece al pasar el hero
+  if(!wa) return;
 
   function chequear(){
-    var pasoElHero = disparo.getBoundingClientRect().bottom < 0;
-    wa.classList.toggle('on', pasoElHero);
+    var paso;
+    if (disparo && disparo.offsetParent !== null){
+      paso = disparo.getBoundingClientRect().bottom < 0;
+    } else {
+      paso = window.pageYOffset > 220;           // respaldo si el hero está oculto
+    }
+    wa.classList.toggle('on', paso);
   }
   window.addEventListener('scroll', chequear, {passive:true});
+  window.addEventListener('resize', chequear, {passive:true});
   chequear();
 
   window.ajustarWaFlot=function(hayBanner){
