@@ -537,12 +537,20 @@ function detectarOrigen(){
   return h;                                                   // cualquier otro, el dominio
 }
 
+function detectarDispositivo(){
+  var a = window.innerWidth || document.documentElement.clientWidth;
+  if (a < 840)  return 'celular';
+  if (a < 1200) return 'tablet';
+  return 'escritorio';
+}
+
 function registrarEvento(tipo, detalle){
   try {
     var cuerpo = JSON.stringify({
       tipo: tipo,
       origen: sessionStorage.getItem('origen') || 'directo',
-      detalle: detalle || null
+      detalle: detalle || null,
+      dispositivo: detectarDispositivo()
     });
     // keepalive: la petición sobrevive aunque la página se cierre al abrir WhatsApp
     fetch(SB_URL + '/rest/v1/eventos', {
