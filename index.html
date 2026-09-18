@@ -159,6 +159,16 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 .wa-flot.on{opacity:1;transform:scale(1)}
 .wa-flot.sinbanner{bottom:18px}
 
+.ver-menu{margin-top:14px}
+.ver-menu a{color:var(--muted);font-size:.88rem;text-decoration:underline}
+.ver-menu a:hover{color:var(--gold)}
+
+/* El menú en texto existe para buscadores y lectores de pantalla.
+   No se oculta con display:none — eso lo haría invisible también
+   para la accesibilidad y resulta sospechoso para Google. */
+.menu-txt{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.93);display:none;overflow:auto;padding:24px;text-align:center}
 .lightbox.on{display:block}
 .lightbox img{max-width:min(560px,94%);height:auto;margin:0 auto;border-radius:10px}
@@ -223,6 +233,94 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   .open-pill.on .dot{animation:none}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Choguifrits",
+  "description": "Pollo frito con delivery en Posadas, Misiones. Combos de alitas y brochets de pechuga.",
+  "url": "https://choguifrits.com.ar",
+  "telephone": "+5493764160462",
+  "image": "https://choguifrits.com.ar/img/menu.jpeg",
+  "servesCuisine": ["Pollo frito", "Comida rápida"],
+  "priceRange": "$$",
+  "currenciesAccepted": "ARS",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Perito Moreno 3962",
+    "addressLocality": "Posadas",
+    "addressRegion": "Misiones",
+    "postalCode": "N3301MBF",
+    "addressCountry": "AR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -27.385505,
+    "longitude": -55.905485
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "20:00",
+    "closes": "00:00"
+  }],
+  "sameAs": ["https://www.instagram.com/choguifrits/"],
+  "hasMenu": {
+    "@type": "Menu",
+    "url": "https://choguifrits.com.ar/menu",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Alitas",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Combo personal", "description": "8 presas, 1 papa chica y 1 salsa a elección", "offers": { "@type": "Offer", "price": "18000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Combo amigos", "description": "12 presas, 1 papa grande y 2 salsas a elección", "offers": { "@type": "Offer", "price": "21000", "priceCurrency": "ARS" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Brochet de pechuga",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Combo personal", "description": "3 brochets, 1 papa chica y 1 salsa a elección", "offers": { "@type": "Offer", "price": "17000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Combo amigos", "description": "6 brochets, 1 papa grande y 2 salsas a elección", "offers": { "@type": "Offer", "price": "22000", "priceCurrency": "ARS" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Mixes",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Mix 1 persona", "description": "4 presas + 2 brochets de pechuga", "offers": { "@type": "Offer", "price": "14000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Mix 2 personas", "description": "8 presas + 4 brochets de pechuga", "offers": { "@type": "Offer", "price": "26000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Mix 3 personas", "description": "12 presas + 6 brochets de pechuga", "offers": { "@type": "Offer", "price": "31000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Mix 1 persona con papas", "description": "4 presas + 2 brochets + papas fritas", "offers": { "@type": "Offer", "price": "19000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Mix 2 personas con papas", "description": "8 presas + 4 brochets + papas fritas", "offers": { "@type": "Offer", "price": "32000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Mix 3 personas con papas", "description": "12 presas + 6 brochets + papas fritas", "offers": { "@type": "Offer", "price": "37000", "priceCurrency": "ARS" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Individuales",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "8 presas de pollo", "offers": { "@type": "Offer", "price": "12000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "12 presas de pollo", "offers": { "@type": "Offer", "price": "14000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "4 brochets de pechuga", "offers": { "@type": "Offer", "price": "13000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "6 brochets de pechuga", "offers": { "@type": "Offer", "price": "16000", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Papas fritas chicas", "offers": { "@type": "Offer", "price": "5500", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Papas fritas grandes", "offers": { "@type": "Offer", "price": "6500", "priceCurrency": "ARS" } }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Bebidas",
+        "hasMenuItem": [
+          { "@type": "MenuItem", "name": "Coca-Cola, Sprite o Fanta", "offers": { "@type": "Offer", "price": "4500", "priceCurrency": "ARS" } },
+          { "@type": "MenuItem", "name": "Saborizada Levité pomelo o naranja", "offers": { "@type": "Offer", "price": "4000", "priceCurrency": "ARS" } }
+        ]
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 
@@ -279,6 +377,49 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
     </div>
     <div class="menu-cta reveal">
       <a data-wa="menu" class="btn btn-gold" href="https://wa.me/5493764160462?text=Hola%20Choguifrits,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">Pedí tu combo por WhatsApp</a>
+      <div class="ver-menu"><a href="menu/">Ver solo el menú</a></div>
+    </div>
+
+    <!-- Menú en texto: lo leen los buscadores y los lectores de pantalla.
+         Para el visitante, las imágenes de arriba muestran lo mismo. -->
+    <div class="menu-txt">
+      <h3>Alitas</h3>
+      <ul>
+        <li>Combo personal — 8 presas, 1 papa chica y 1 salsa a elección: $18.000</li>
+        <li>Combo amigos — 12 presas, 1 papa grande y 2 salsas a elección: $21.000</li>
+      </ul>
+
+      <h3>Brochet de pechuga</h3>
+      <ul>
+        <li>Combo personal — 3 brochets, 1 papa chica y 1 salsa a elección: $17.000</li>
+        <li>Combo amigos — 6 brochets, 1 papa grande y 2 salsas a elección: $22.000</li>
+      </ul>
+
+      <h3>Mixes</h3>
+      <ul>
+        <li>4 presas + 2 brochets de pechuga, para 1 persona: $14.000</li>
+        <li>8 presas + 4 brochets de pechuga, para 2 personas: $26.000</li>
+        <li>12 presas + 6 brochets de pechuga, para 3 personas: $31.000</li>
+        <li>4 presas + 2 brochets + papas fritas, para 1 persona: $19.000</li>
+        <li>8 presas + 4 brochets + papas fritas, para 2 personas: $32.000</li>
+        <li>12 presas + 6 brochets + papas fritas, para 3 personas: $37.000</li>
+      </ul>
+
+      <h3>Individuales</h3>
+      <ul>
+        <li>8 presas de pollo: $12.000</li>
+        <li>12 presas de pollo: $14.000</li>
+        <li>4 brochets de pechuga: $13.000</li>
+        <li>6 brochets de pechuga: $16.000</li>
+        <li>Papas fritas chicas: $5.500</li>
+        <li>Papas fritas grandes: $6.500</li>
+      </ul>
+
+      <h3>Bebidas</h3>
+      <ul>
+        <li>Coca-Cola, Sprite o Fanta: $4.500</li>
+        <li>Saborizada Levité pomelo o naranja: $4.000</li>
+      </ul>
     </div>
   </section>
 
