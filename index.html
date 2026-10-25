@@ -905,7 +905,7 @@ function registrarEvento(tipo, detalle){
 (function(){
   var WA_CHAT   = 'https://wa.me/5493764160462';
   var ESPERA_MAX = 45000;   // después de esto, deriva a WhatsApp
-  var PASO       = 1800;    // cada cuánto pregunta si ya hay respuesta
+  var PASO       = 800;     // cada cuánto pregunta si ya hay respuesta
 
   // Muestra bajo cada respuesta cuánto tardó, de punta a punta.
   // Para apagarlo cuando ya no haga falta medir, poné false.
@@ -920,7 +920,43 @@ function registrarEvento(tipo, detalle){
 
   if (!burb || !caja) return;
 
-  var sesion = null, ocupado = false, saludado = false;
+  var sesion = null, ocupado = false, saludado = false, atajos = null;
+
+  /* -------------------------------- atajos --------------------------------
+     Lo más preguntado se contesta en el navegador, al instante, sin pasar
+     por el servidor ni por la IA. El texto vive en la tabla `chat_atajos`
+     de Supabase: se edita ahí, no acá.                                     */
+
+  function normalizar(s){
+    return (s || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')   // saca acentos
+      .replace(/[^a-z0-9ñ\s]/g, ' ')                      // saca signos
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function cargarAtajos(){
+    if (atajos) return Promise.resolve(atajos);
+    return fetch(SB_URL + '/rest/v1/chat_atajos?select=disparadores,respuesta'
+                 + '&activo=eq.true&order=orden.asc', { headers: cabeceras() })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(filas){ atajos = filas || []; return atajos; })
+      .catch(function(){ atajos = []; return atajos; });
+  }
+
+  function buscarAtajo(texto){
+    if (!atajos || !atajos.length) return null;
+    var n = normalizar(texto);
+    if (!n) return null;
+    for (var i = 0; i < atajos.length; i++){
+      var d = atajos[i].disparadores || [];
+      for (var j = 0; j < d.length; j++){
+        if (n.indexOf(d[j]) !== -1) return atajos[i].respuesta;
+      }
+    }
+    return null;
+  }
 
   /* -------- el banner de cookies ocupa el piso de la pantalla -------- */
   window.ajustarChat = function(){
@@ -1057,6 +1093,16 @@ function registrarEvento(tipo, detalle){
   function enviar(texto){
     var arranque = Date.now();
     burbuja(texto, 'yo');
+
+    var listo = buscarAtajo(texto);
+    if (listo){
+      burbuja(listo, 'bot');
+      if (MOSTRAR_TIEMPO) cronometro(arranque);
+      registrarEvento('chat_atajo', null);
+      campo.focus();
+      return;
+    }
+
     trabar(true);
     var esperando = puntos();
 
@@ -1098,7 +1144,8 @@ function registrarEvento(tipo, detalle){
       registrarEvento('chat_abierto', null);
       burbuja('¡Hola! Preguntame por el menú, los precios o los horarios. '
             + 'Para hacer un pedido, escribinos por WhatsApp.', 'bot');
-      entrar().catch(function(){});   // adelanta el login mientras escribe
+      // Login y atajos mientras la persona escribe la primera pregunta
+      entrar().then(cargarAtajos).catch(function(){});
     }
     if (window.innerWidth > 480) campo.focus();
   }
