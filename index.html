@@ -981,11 +981,24 @@ function registrarEvento(tipo, detalle){
     return false;
   }
 
+  /* Un atajo habla de una sola cosa. Si la pregunta menciona dos productos
+     ("un combo amigo más una coca"), hay que sumarlos o combinarlos, y eso
+     ningún texto fijo lo hace. A la IA.                                   */
+  function cuantosProductos(n){
+    var vistos = 0;
+    for (var i = 0; i < PEDIR_PRODUCTO.length; i++){
+      if (n.indexOf(PEDIR_PRODUCTO[i]) !== -1) vistos++;
+      if (vistos >= 2) return vistos;
+    }
+    return vistos;
+  }
+
   function buscarAtajo(texto){
     if (!atajos || !atajos.length) return null;
     var n = normalizar(texto) + ' ';
     if (!n.trim()) return null;
-    if (tieneMatiz(n)) return null;   // que lo resuelva la IA
+    if (tieneMatiz(n)) return null;            // que lo resuelva la IA
+    if (cuantosProductos(n) >= 2) return null; // ídem
     for (var i = 0; i < atajos.length; i++){
       var d = atajos[i].disparadores || [];
       for (var j = 0; j < d.length; j++){
