@@ -274,9 +274,11 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 .ch-msj a{color:#48d17a;font-weight:700;text-decoration:underline}
 .ch-tiempo{align-self:flex-start;font-size:.68rem;color:var(--muted);
   margin:-5px 0 0 4px;letter-spacing:.04em}
-.ch-nota{align-self:stretch;font-size:.74rem;color:var(--gold-soft);
-  background:rgba(255,196,46,.08);border:1px solid var(--line);
-  border-radius:9px;padding:7px 10px;line-height:1.4}
+.ch-nota{align-self:stretch;display:flex;gap:8px;align-items:flex-start;
+  font-size:.78rem;font-weight:500;color:#FFD9A0;
+  background:rgba(255,138,0,.14);border:1px solid rgba(255,138,0,.55);
+  border-left:3px solid #FF8A00;border-radius:9px;padding:9px 11px;line-height:1.4}
+.ch-nota .ic{flex:0 0 auto;font-size:.95rem;line-height:1.2}
 
 .ch-puntos{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);
   border-radius:13px;padding:12px 14px;display:flex;gap:4px}
@@ -977,7 +979,13 @@ function registrarEvento(tipo, detalle){
   function nota(texto){
     var d = document.createElement('div');
     d.className = 'ch-nota';
-    d.textContent = texto;
+    var i = document.createElement('span');
+    i.className = 'ic';
+    i.textContent = '🌙';
+    var t = document.createElement('span');
+    t.textContent = texto;
+    d.appendChild(i);
+    d.appendChild(t);
     cuerpo.appendChild(d);
     cuerpo.scrollTop = cuerpo.scrollHeight;
   }
@@ -1139,6 +1147,7 @@ function registrarEvento(tipo, detalle){
         esperando.remove();
         burbuja(respuesta, 'bot');
         if (MOSTRAR_TIEMPO) cronometro(arranque);
+        if (cerradoAhora()) nota(AVISO_CERRADO);
         registrarEvento('chat_respuesta', null);
       })
       .catch(function(e){
