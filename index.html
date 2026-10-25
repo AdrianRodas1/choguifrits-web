@@ -1140,7 +1140,10 @@ function registrarEvento(tipo, detalle){
     while ((m = RE_TEL.exec(texto)) !== null){
       if (m.index > fin) frag.appendChild(document.createTextNode(texto.slice(fin, m.index)));
       var a = document.createElement('a');
-      a.href = WA_CHAT + '?text=' + encodeURIComponent('Hola Choguifrits, quiero hacer un pedido');
+      // Saludo neutro a propósito: este enlace aparece tanto en una consulta
+      // de precios como en un reclamo. El pedido tiene su propio botón, con
+      // el texto de la persona adentro.
+      a.href = WA_CHAT + '?text=' + encodeURIComponent('Hola Choguifrits!');
       a.target = '_blank';
       a.rel = 'noopener';
       a.setAttribute('data-wa', 'chat');
