@@ -955,10 +955,37 @@ function registrarEvento(tipo, detalle){
       .catch(function(){ atajos = []; return atajos; });
   }
 
+  /* Un atajo es texto fijo: sirve para la pregunta directa, no para una
+     con condiciones. "¿puedo pedir las papas sin sal?" engancharía el
+     atajo de papas y contestaría los precios, ignorando lo único que
+     preguntaron. Cuando aparece un matiz, que conteste la IA aunque
+     tarde 5 segundos.
+
+     Las dietas quedan afuera a propósito: ahí la respuesta exacta
+     importa más que la flexibilidad.                                  */
+  var MATICES = [
+    'sin sal','sin azucar','sin picante','sin cebolla','sin papas','sin salsa',
+    'si llueve','con lluvia','si hay tormenta','aunque',
+    'extra ','doble ','mas salsa','en vez de','en lugar de','cambiar por',
+    'puedo cambiar','se puede cambiar','puedo sacar','sacarle','agregarle'
+  ];
+  var MATICES_NO = ['sin tacc','sin gluten'];
+
+  function tieneMatiz(n){
+    for (var i = 0; i < MATICES_NO.length; i++){
+      if (n.indexOf(MATICES_NO[i]) !== -1) return false;
+    }
+    for (var j = 0; j < MATICES.length; j++){
+      if (n.indexOf(MATICES[j]) !== -1) return true;
+    }
+    return false;
+  }
+
   function buscarAtajo(texto){
     if (!atajos || !atajos.length) return null;
-    var n = normalizar(texto);
-    if (!n) return null;
+    var n = normalizar(texto) + ' ';
+    if (!n.trim()) return null;
+    if (tieneMatiz(n)) return null;   // que lo resuelva la IA
     for (var i = 0; i < atajos.length; i++){
       var d = atajos[i].disparadores || [];
       for (var j = 0; j < d.length; j++){
@@ -1025,6 +1052,9 @@ function registrarEvento(tipo, detalle){
      dejar pasar diez preguntas tontas.                                  */
 
   var FUERA_DE_TEMA = [
+    'que agente','agente de ia','que ia usas','que ia sos','que modelo',
+    'que plan de','con que estas hecho','quien te programo','como estas hecho',
+    'claude','chatgpt','gpt','openai','gemini','que tecnologia',
     'tarea de matematica','tarea de ingles','tarea de historia','hace mi tarea',
     'resolve este','resolve el siguiente','escribime un codigo','escribi un codigo',
     'codigo en python','codigo en java','en javascript','programa en python',
