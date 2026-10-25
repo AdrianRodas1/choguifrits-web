@@ -274,6 +274,9 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 .ch-msj a{color:#48d17a;font-weight:700;text-decoration:underline}
 .ch-tiempo{align-self:flex-start;font-size:.68rem;color:var(--muted);
   margin:-5px 0 0 4px;letter-spacing:.04em}
+.ch-nota{align-self:stretch;font-size:.74rem;color:var(--gold-soft);
+  background:rgba(255,196,46,.08);border:1px solid var(--line);
+  border-radius:9px;padding:7px 10px;line-height:1.4}
 
 .ch-puntos{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);
   border-radius:13px;padding:12px 14px;display:flex;gap:4px}
@@ -938,7 +941,7 @@ function registrarEvento(tipo, detalle){
 
   function cargarAtajos(){
     if (atajos) return Promise.resolve(atajos);
-    return fetch(SB_URL + '/rest/v1/chat_atajos?select=disparadores,respuesta'
+    return fetch(SB_URL + '/rest/v1/chat_atajos?select=tema,disparadores,respuesta'
                  + '&activo=eq.true&order=orden.asc', { headers: cabeceras() })
       .then(function(r){ return r.ok ? r.json() : []; })
       .then(function(filas){ atajos = filas || []; return atajos; })
@@ -952,10 +955,31 @@ function registrarEvento(tipo, detalle){
     for (var i = 0; i < atajos.length; i++){
       var d = atajos[i].disparadores || [];
       for (var j = 0; j < d.length; j++){
-        if (n.indexOf(d[j]) !== -1) return atajos[i].respuesta;
+        if (n.indexOf(d[j]) !== -1) return atajos[i];
       }
     }
     return null;
+  }
+
+  /* -------- aviso de cerrado --------
+     Los atajos son texto fijo y no saben la hora, así que el aviso lo
+     pone el navegador. Las respuestas de la IA lo traen en el texto:
+     al servidor el estado del local se lo pasa el propio código.      */
+
+  var AVISO_CERRADO = 'Ahora estamos cerrados. Atendemos de martes a '
+                    + 'domingos, de 20:00 a 00:00. Podés dejar tu consulta igual.';
+
+  function cerradoAhora(){
+    var f = new Date();
+    return !(f.getDay() !== 1 && f.getHours() >= 20);
+  }
+
+  function nota(texto){
+    var d = document.createElement('div');
+    d.className = 'ch-nota';
+    d.textContent = texto;
+    cuerpo.appendChild(d);
+    cuerpo.scrollTop = cuerpo.scrollHeight;
   }
 
   /* -------- el banner de cookies ocupa el piso de la pantalla -------- */
@@ -1096,9 +1120,11 @@ function registrarEvento(tipo, detalle){
 
     var listo = buscarAtajo(texto);
     if (listo){
-      burbuja(listo, 'bot');
+      burbuja(listo.respuesta, 'bot');
       if (MOSTRAR_TIEMPO) cronometro(arranque);
-      registrarEvento('chat_atajo', null);
+      // El atajo de horarios ya dice todo esto; no lo repetimos.
+      if (cerradoAhora() && listo.tema !== 'horarios') nota(AVISO_CERRADO);
+      registrarEvento('chat_atajo', listo.tema || null);
       campo.focus();
       return;
     }
@@ -1144,6 +1170,7 @@ function registrarEvento(tipo, detalle){
       registrarEvento('chat_abierto', null);
       burbuja('¡Hola! Preguntame por el menú, los precios o los horarios. '
             + 'Para hacer un pedido, escribinos por WhatsApp.', 'bot');
+      if (cerradoAhora()) nota(AVISO_CERRADO);
       // Login y atajos mientras la persona escribe la primera pregunta
       entrar().then(cargarAtajos).catch(function(){});
     }
