@@ -931,10 +931,37 @@ function registrarEvento(tipo, detalle){
   window.addEventListener('resize', function(){ window.ajustarChat(); }, {passive:true});
 
   /* ------------------------------ interfaz ------------------------------ */
+
+  // El bot suele cerrar con el número de WhatsApp. Lo convertimos en
+  // enlace armando nodos de texto, nunca con innerHTML: así una respuesta
+  // con HTML adentro se vería como texto y no se ejecutaría.
+  var RE_TEL = /\+?\s?54\s?9?\s?3764[\s.-]?16[\s.-]?0462|\b3764[\s.-]?16[\s.-]?0462\b/g;
+
+  function conEnlaces(texto){
+    var frag = document.createDocumentFragment();
+    var fin = 0, m;
+    RE_TEL.lastIndex = 0;
+    while ((m = RE_TEL.exec(texto)) !== null){
+      if (m.index > fin) frag.appendChild(document.createTextNode(texto.slice(fin, m.index)));
+      var a = document.createElement('a');
+      a.href = WA_CHAT + '?text=' + encodeURIComponent('Hola Choguifrits, quiero hacer un pedido');
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('data-wa', 'chat');
+      a.textContent = m[0];
+      frag.appendChild(a);
+      fin = m.index + m[0].length;
+    }
+    if (fin === 0) return document.createTextNode(texto);
+    if (fin < texto.length) frag.appendChild(document.createTextNode(texto.slice(fin)));
+    return frag;
+  }
+
   function burbuja(texto, clase){
     var d = document.createElement('div');
     d.className = 'ch-msj ' + clase;
-    d.textContent = texto;
+    if (clase.indexOf('bot') !== -1) d.appendChild(conEnlaces(texto));
+    else d.textContent = texto;
     cuerpo.appendChild(d);
     cuerpo.scrollTop = cuerpo.scrollHeight;
     return d;
