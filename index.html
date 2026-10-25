@@ -232,6 +232,73 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   .reveal{opacity:1;transform:none;transition:none}
   .open-pill.on .dot{animation:none}
 }
+
+/* ===================== CHAT CON IA =====================
+   --ch-piso lo calcula el JS: es el alto del banner de cookies
+   cuando está visible, para que el chat no quede tapado.      */
+.ch-burb{position:fixed;left:14px;bottom:calc(18px + var(--ch-piso,0px));z-index:90;
+  width:52px;height:52px;border-radius:50%;background:var(--gold);color:#1a1206;
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.5);transition:transform .15s ease,bottom .22s ease}
+.ch-burb:hover{transform:scale(1.07)}
+.ch-burb svg{width:26px;height:26px}
+.ch-burb.oculto{display:none}
+
+.ch-caja{position:fixed;left:14px;bottom:calc(18px + var(--ch-piso,0px));z-index:91;
+  width:340px;max-width:calc(100vw - 28px);height:470px;
+  max-height:calc(100vh - 36px - var(--ch-piso,0px));
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  display:none;flex-direction:column;overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.65);font-size:14px;transition:bottom .22s ease}
+.ch-caja.abierta{display:flex}
+
+.ch-top{background:var(--gold);color:#1a1206;padding:11px 13px;display:flex;
+  align-items:center;gap:8px;flex:0 0 auto}
+.ch-top strong{font-family:'Anton',sans-serif;font-weight:400;font-size:1rem;
+  text-transform:uppercase;letter-spacing:.02em}
+.ch-top button{margin-left:auto;background:none;border:none;color:#1a1206;
+  font-size:22px;line-height:1;cursor:pointer;padding:0 2px}
+
+.ch-aviso{background:var(--surface2);color:var(--muted);font-size:.72rem;
+  padding:8px 13px;border-bottom:1px solid var(--line);flex:0 0 auto}
+
+.ch-cuerpo{flex:1 1 auto;overflow-y:auto;padding:13px;display:flex;
+  flex-direction:column;gap:9px}
+.ch-msj{max-width:85%;padding:9px 12px;border-radius:13px;line-height:1.45;
+  word-wrap:break-word;white-space:pre-wrap;font-size:.9rem}
+.ch-msj.yo{align-self:flex-end;background:var(--gold);color:#1a1206;
+  border-bottom-right-radius:4px;font-weight:500}
+.ch-msj.bot{align-self:flex-start;background:var(--surface2);color:var(--cream);
+  border:1px solid var(--line);border-bottom-left-radius:4px}
+.ch-msj.err{background:rgba(226,59,52,.12);border-color:rgba(226,59,52,.4);color:#f0a19c}
+.ch-msj a{color:#48d17a;font-weight:700;text-decoration:underline}
+
+.ch-puntos{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);
+  border-radius:13px;padding:12px 14px;display:flex;gap:4px}
+.ch-puntos span{width:6px;height:6px;border-radius:50%;background:var(--muted);
+  animation:chlat 1.3s infinite}
+.ch-puntos span:nth-child(2){animation-delay:.18s}
+.ch-puntos span:nth-child(3){animation-delay:.36s}
+@keyframes chlat{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+.ch-pie{flex:0 0 auto;border-top:1px solid var(--line);padding:10px;display:flex;
+  gap:7px;background:var(--surface)}
+.ch-pie input{flex:1;min-width:0;background:var(--bg2);border:1px solid var(--line);
+  border-radius:10px;padding:10px 12px;color:var(--cream);font-size:.92rem;font-family:inherit}
+.ch-pie input:focus{outline:none;border-color:var(--gold)}
+.ch-pie button{background:var(--gold);color:#1a1206;border:none;border-radius:10px;
+  padding:0 16px;font-weight:700;cursor:pointer;font-size:1rem}
+.ch-pie button:disabled{opacity:.45;cursor:default}
+
+@media (max-width:480px){
+  .ch-caja{left:8px;right:8px;width:auto;bottom:calc(8px + var(--ch-piso,0px));
+    height:calc(100vh - 70px - var(--ch-piso,0px))}
+  .ch-burb{left:12px;bottom:calc(14px + var(--ch-piso,0px))}
+}
+@media (prefers-reduced-motion:reduce){
+  .ch-burb,.ch-caja{transition:none}
+  .ch-puntos span{animation:none;opacity:.6}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -529,6 +596,24 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
 </a>
 
+<!-- ===================== CHAT CON IA ===================== -->
+<button class="ch-burb" id="chBurb" aria-label="Abrir el chat de consultas">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+</button>
+
+<div class="ch-caja" id="chCaja" role="dialog" aria-label="Chat de Choguifrits">
+  <div class="ch-top">
+    <strong>Asistente</strong>
+    <button id="chCerrar" aria-label="Cerrar el chat">&times;</button>
+  </div>
+  <div class="ch-aviso">Respuestas automáticas. Los pedidos se toman por WhatsApp.</div>
+  <div class="ch-cuerpo" id="chCuerpo"></div>
+  <form class="ch-pie" id="chForm" autocomplete="off">
+    <input id="chTexto" placeholder="Escribí tu consulta…" maxlength="300" aria-label="Tu mensaje">
+    <button type="submit" id="chEnviar" aria-label="Enviar">&#10148;</button>
+  </form>
+</div>
+
 <div class="lightbox" id="lb" onclick="cerrarZoom(event)"><button class="x" onclick="cerrarZoom(event)" aria-label="Cerrar">&times;</button><img id="lbimg" src="" alt="Menú ampliado"></div>
 
 <script>
@@ -805,16 +890,199 @@ function registrarEvento(tipo, detalle){
   };
 })();
 
+/* ============================================================
+   CHAT CON IA
+   El navegador abre una sesión anónima de Supabase, deja la
+   pregunta en `chat_mensajes` y espera. Del otro lado, el
+   servidor de Sistemas la toma, la resuelve con Claude y
+   escribe la respuesta en la misma tabla.
+
+   Acá NO hay ninguna clave nueva: usa la misma anon key, y las
+   políticas RLS hacen que cada visitante vea solo lo suyo.
+   ============================================================ */
+(function(){
+  var WA_CHAT   = 'https://wa.me/5493764160462';
+  var ESPERA_MAX = 45000;   // después de esto, deriva a WhatsApp
+  var PASO       = 1800;    // cada cuánto pregunta si ya hay respuesta
+
+  var burb   = document.getElementById('chBurb'),
+      caja   = document.getElementById('chCaja'),
+      cuerpo = document.getElementById('chCuerpo'),
+      form   = document.getElementById('chForm'),
+      campo  = document.getElementById('chTexto'),
+      boton  = document.getElementById('chEnviar');
+
+  if (!burb || !caja) return;
+
+  var sesion = null, ocupado = false, saludado = false;
+
+  /* -------- el banner de cookies ocupa el piso de la pantalla -------- */
+  window.ajustarChat = function(){
+    var b = document.getElementById('cookieBanner');
+    var alto = (b && b.offsetParent !== null) ? b.offsetHeight + 10 : 0;
+    document.documentElement.style.setProperty('--ch-piso', alto + 'px');
+  };
+  window.addEventListener('resize', function(){ window.ajustarChat(); }, {passive:true});
+
+  /* ------------------------------ interfaz ------------------------------ */
+  function burbuja(texto, clase){
+    var d = document.createElement('div');
+    d.className = 'ch-msj ' + clase;
+    d.textContent = texto;
+    cuerpo.appendChild(d);
+    cuerpo.scrollTop = cuerpo.scrollHeight;
+    return d;
+  }
+  function puntos(){
+    var d = document.createElement('div');
+    d.className = 'ch-puntos';
+    d.innerHTML = '<span></span><span></span><span></span>';
+    cuerpo.appendChild(d);
+    cuerpo.scrollTop = cuerpo.scrollHeight;
+    return d;
+  }
+  function trabar(si){
+    ocupado = si;
+    boton.disabled = si;
+    campo.disabled = si;
+    if (!si) campo.focus();
+  }
+
+  /* ------------------------------ Supabase ------------------------------ */
+  function cabeceras(){
+    return {
+      'apikey': SB_KEY,
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + (sesion ? sesion.access_token : SB_KEY)
+    };
+  }
+
+  function entrar(){
+    // Sesión anónima. Se guarda en sessionStorage para que sobreviva a
+    // ir hasta /menu y volver, pero no de una visita a la otra.
+    var guardada = null;
+    try { guardada = JSON.parse(sessionStorage.getItem('chatSesion') || 'null'); } catch(e){}
+    if (guardada && guardada.vence > Date.now() + 60000){
+      sesion = guardada;
+      return Promise.resolve();
+    }
+    return fetch(SB_URL + '/auth/v1/signup', {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Content-Type': 'application/json' },
+      body: '{}'
+    })
+    .then(function(r){ if(!r.ok) throw new Error('auth ' + r.status); return r.json(); })
+    .then(function(d){
+      if (!d.access_token) throw new Error('sesión sin token');
+      sesion = {
+        access_token: d.access_token,
+        vence: Date.now() + ((d.expires_in || 3600) * 1000)
+      };
+      try { sessionStorage.setItem('chatSesion', JSON.stringify(sesion)); } catch(e){}
+    });
+  }
+
+  function preguntar(texto){
+    return fetch(SB_URL + '/rest/v1/chat_mensajes', {
+      method: 'POST',
+      headers: Object.assign(cabeceras(), { 'Prefer': 'return=representation' }),
+      body: JSON.stringify({ rol: 'usuario', texto: texto })
+    })
+    .then(function(r){
+      if (!r.ok) return r.text().then(function(t){ throw new Error('insert ' + r.status + ' ' + t); });
+      return r.json();
+    })
+    .then(function(filas){ return filas[0].id; });
+  }
+
+  function esperar(idPregunta){
+    var arranque = Date.now();
+    return new Promise(function(listo, falla){
+      (function vuelta(){
+        if (Date.now() - arranque > ESPERA_MAX) return falla(new Error('timeout'));
+        fetch(SB_URL + '/rest/v1/chat_mensajes?select=texto&rol=eq.asistente&id=gt.'
+              + idPregunta + '&order=id.asc&limit=1', { headers: cabeceras() })
+          .then(function(r){ return r.ok ? r.json() : []; })
+          .then(function(filas){
+            if (filas.length) return listo(filas[0].texto);
+            setTimeout(vuelta, PASO);
+          })
+          .catch(function(){ setTimeout(vuelta, PASO); });
+      })();
+    });
+  }
+
+  /* -------------------------------- ciclo -------------------------------- */
+  function enviar(texto){
+    burbuja(texto, 'yo');
+    trabar(true);
+    var esperando = puntos();
+
+    entrar()
+      .then(function(){ return preguntar(texto); })
+      .then(esperar)
+      .then(function(respuesta){
+        esperando.remove();
+        burbuja(respuesta, 'bot');
+        registrarEvento('chat_respuesta', null);
+      })
+      .catch(function(e){
+        esperando.remove();
+        var d = burbuja('No pude responderte ahora. ', 'bot err');
+        var a = document.createElement('a');
+        a.href = WA_CHAT; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'Escribinos por WhatsApp';
+        d.appendChild(a);
+        if (window.console) console.warn('chat:', e.message);
+      })
+      .then(function(){ trabar(false); });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var t = campo.value.trim();
+    if (!t || ocupado) return;
+    campo.value = '';
+    enviar(t);
+  });
+
+  /* -------------------------------- abrir -------------------------------- */
+  function abrir(){
+    caja.classList.add('abierta');
+    burb.classList.add('oculto');
+    if (!saludado){
+      saludado = true;
+      registrarEvento('chat_abierto', null);
+      burbuja('¡Hola! Preguntame por el menú, los precios o los horarios. '
+            + 'Para hacer un pedido, escribinos por WhatsApp.', 'bot');
+      entrar().catch(function(){});   // adelanta el login mientras escribe
+    }
+    if (window.innerWidth > 480) campo.focus();
+  }
+  function cerrar(){
+    caja.classList.remove('abierta');
+    burb.classList.remove('oculto');
+  }
+
+  burb.addEventListener('click', abrir);
+  document.getElementById('chCerrar').addEventListener('click', cerrar);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && caja.classList.contains('abierta')) cerrar();
+  });
+})();
+
 /* ---------- Cookies ---------- */
 document.addEventListener('DOMContentLoaded',function(){
   var banner=document.getElementById('cookieBanner'), btn=document.getElementById('acceptCookies');
   var aceptado=localStorage.getItem('cookieAccepted');
   if(aceptado){ banner.style.display='none'; }
   if(window.ajustarWaFlot) window.ajustarWaFlot(!aceptado);
+  if(window.ajustarChat)   window.ajustarChat();
   btn.addEventListener('click',function(){
     localStorage.setItem('cookieAccepted','true');
     banner.style.display='none';
     if(window.ajustarWaFlot) window.ajustarWaFlot(false);
+    if(window.ajustarChat)   window.ajustarChat();
   });
 });
 
