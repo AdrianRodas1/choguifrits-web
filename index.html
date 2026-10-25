@@ -971,7 +971,7 @@ function registrarEvento(tipo, detalle){
   /* -------- intención de pedir --------
      Si la persona está armando un pedido, el chat no lo puede tomar, pero
      sí puede escribirle el mensaje de WhatsApp ya listo. Es la conversión
-     que importa: del chat a la conversación con Diego.
+     que importa: del chat a la conversación por WhatsApp.
 
      Hacen falta las DOS cosas, intención y producto, para no confundir
      "quiero saber el horario" con un pedido. Y si además suena a consulta
@@ -1222,7 +1222,7 @@ function registrarEvento(tipo, detalle){
     burbuja(texto, 'yo');
 
     if (quierePedir(texto)){
-      var p = burbuja('Los pedidos los toma Diego por WhatsApp — yo no puedo '
+      var p = burbuja('Los pedidos los tomamos por WhatsApp — por acá no puedo '
                     + 'registrarlos. Pero te dejo el mensaje armado: tocá el botón '
                     + 'y se abre con tu pedido escrito.', 'bot');
       botonPedido(texto);
