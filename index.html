@@ -272,6 +272,8 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   border:1px solid var(--line);border-bottom-left-radius:4px}
 .ch-msj.err{background:rgba(226,59,52,.12);border-color:rgba(226,59,52,.4);color:#f0a19c}
 .ch-msj a{color:#48d17a;font-weight:700;text-decoration:underline}
+.ch-tiempo{align-self:flex-start;font-size:.68rem;color:var(--muted);
+  margin:-5px 0 0 4px;letter-spacing:.04em}
 
 .ch-puntos{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);
   border-radius:13px;padding:12px 14px;display:flex;gap:4px}
@@ -905,6 +907,10 @@ function registrarEvento(tipo, detalle){
   var ESPERA_MAX = 45000;   // después de esto, deriva a WhatsApp
   var PASO       = 1800;    // cada cuánto pregunta si ya hay respuesta
 
+  // Muestra bajo cada respuesta cuánto tardó, de punta a punta.
+  // Para apagarlo cuando ya no haga falta medir, poné false.
+  var MOSTRAR_TIEMPO = true;
+
   var burb   = document.getElementById('chBurb'),
       caja   = document.getElementById('chCaja'),
       cuerpo = document.getElementById('chCuerpo'),
@@ -1013,7 +1019,16 @@ function registrarEvento(tipo, detalle){
   }
 
   /* -------------------------------- ciclo -------------------------------- */
+  function cronometro(arranque){
+    var d = document.createElement('div');
+    d.className = 'ch-tiempo';
+    d.textContent = ((Date.now() - arranque) / 1000).toFixed(1) + ' s';
+    cuerpo.appendChild(d);
+    cuerpo.scrollTop = cuerpo.scrollHeight;
+  }
+
   function enviar(texto){
+    var arranque = Date.now();
     burbuja(texto, 'yo');
     trabar(true);
     var esperando = puntos();
@@ -1024,6 +1039,7 @@ function registrarEvento(tipo, detalle){
       .then(function(respuesta){
         esperando.remove();
         burbuja(respuesta, 'bot');
+        if (MOSTRAR_TIEMPO) cronometro(arranque);
         registrarEvento('chat_respuesta', null);
       })
       .catch(function(e){
