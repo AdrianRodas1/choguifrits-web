@@ -1018,6 +1018,34 @@ function registrarEvento(tipo, detalle){
     return null;
   }
 
+  /* -------- saludos --------
+     No puede ser un atajo normal: los disparadores son coincidencia de
+     texto, y "hola" aparece dentro de "hola, cuánto sale el combo".
+     Acá se exige que el mensaje SEA un saludo y nada más.              */
+
+  var SALUDOS = [
+    // español
+    'hola','holaa','holaaa','holis','ola','buenas','buen dia','buenos dias',
+    'buenas tardes','buenas noches','que tal','como va','como andas','saludos',
+    'hola buenas','hola buen dia','hola buenas tardes','hola buenas noches',
+    'holaa buenas','buenas buenas','hola que tal','hola como va',
+    // inglés
+    'hi','hello','hey','good morning','good evening',
+    // portugués — en Posadas entra gente de Brasil y de Encarnación
+    'oi','oie','ola bom dia','bom dia','boa tarde','boa noite','e ai','tudo bem',
+    'oi bom dia','oi boa tarde','oi boa noite'
+  ];
+  var MSJ_SALUDO = '¡Hola! ¿Qué querés saber? Te puedo contar del menú, '
+                 + 'los precios, los horarios, las entregas o las formas de pago.';
+
+  function esSaludo(texto){
+    var n = normalizar(texto);
+    for (var i = 0; i < SALUDOS.length; i++){
+      if (n === SALUDOS[i]) return true;
+    }
+    return false;
+  }
+
   /* -------- intención de pedir --------
      Si la persona está armando un pedido, el chat no lo puede tomar, pero
      sí puede escribirle el mensaje de WhatsApp ya listo. Es la conversión
@@ -1352,6 +1380,16 @@ function registrarEvento(tipo, detalle){
   function enviar(texto){
     var arranque = Date.now();
     burbuja(texto, 'yo');
+
+    if (esSaludo(texto)){
+      var s = burbuja(MSJ_SALUDO, 'bot');
+      if (MOSTRAR_TIEMPO) cronometro(arranque);
+      if (cerradoAhora()) nota(AVISO_CERRADO);
+      mostrarDesde(s);
+      registrarEvento('chat_atajo', 'saludo');
+      campo.focus();
+      return;
+    }
 
     if (quierePedir(texto)){
       var p = burbuja('Los pedidos los tomamos por WhatsApp — por acá no puedo '
