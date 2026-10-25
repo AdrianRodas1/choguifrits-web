@@ -599,7 +599,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
 
 <div class="cookie-banner" id="cookieBanner">
   <div class="cwrap">
-    <p style="margin:0">Usamos almacenamiento local para mejorar tu experiencia y contar las visitas. Si seguís navegando, aceptás su uso.</p>
+    <p style="margin:0">Usamos almacenamiento local para mejorar tu experiencia y contar las visitas. El chat usa Cloudflare Turnstile para evitar el uso automatizado (<a href="https://www.cloudflare.com/application-services/terms/turnstile-privacy-policy/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">política de privacidad</a>). Si seguís navegando, aceptás su uso.</p>
     <button id="acceptCookies" class="btn btn-gold" style="padding:9px 18px;font-size:.9rem">Aceptar</button>
   </div>
 </div>
@@ -621,6 +621,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
   <div class="ch-aviso">Respuestas automáticas. Los pedidos se toman por WhatsApp.</div>
   <div class="ch-cuerpo" id="chCuerpo"></div>
   <form class="ch-pie" id="chForm" autocomplete="off">
+    <input class="hp" id="chHp" name="apellido_confirmacion" tabindex="-1" autocomplete="off" aria-hidden="true">
     <input id="chTexto" placeholder="Escribí tu consulta…" maxlength="200" aria-label="Tu mensaje">
     <button type="submit" id="chEnviar" aria-label="Enviar">&#10148;</button>
   </form>
@@ -921,6 +922,14 @@ function registrarEvento(tipo, detalle){
   // Para apagarlo cuando ya no haga falta medir, poné false.
   var MOSTRAR_TIEMPO = true;
 
+  /* Clave pública de Cloudflare Turnstile. Protege el login anónimo:
+     sin esto, un bot puede crear sesiones sin límite y vaciar el cupo
+     diario de respuestas.
+
+     Dejala vacía y el chat sigue andando sin captcha (útil para probar).
+     Es la clave PÚBLICA (site key): va en la web, no es secreta.        */
+  var TURNSTILE_KEY = '0x4AAAAAAFlUeE6L9R2VTKdh';
+
   var burb   = document.getElementById('chBurb'),
       caja   = document.getElementById('chCaja'),
       cuerpo = document.getElementById('chCuerpo'),
@@ -931,6 +940,7 @@ function registrarEvento(tipo, detalle){
   if (!burb || !caja) return;
 
   var sesion = null, ocupado = false, saludado = false, atajos = null;
+  var abiertoEn = 0;
 
   /* -------------------------------- atajos --------------------------------
      Lo más preguntado se contesta en el navegador, al instante, sin pasar
@@ -1199,6 +1209,74 @@ function registrarEvento(tipo, detalle){
     };
   }
 
+  /* -------- Turnstile --------
+     El script se carga recién cuando se abre el chat, no al entrar a la
+     página: la mayoría de los visitantes nunca abre el chat y no tiene
+     por qué pagar la descarga.                                          */
+
+  var _turnstile = null;
+
+  function cargarTurnstile(){
+    if (!TURNSTILE_KEY) return Promise.resolve(null);
+    if (_turnstile) return _turnstile;
+    _turnstile = new Promise(function(listo){
+      if (window.turnstile) return listo(window.turnstile);
+      var s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.defer = true;
+      s.onload = function(){ listo(window.turnstile || null); };
+      s.onerror = function(){ listo(null); };
+      document.head.appendChild(s);
+    });
+    return _turnstile;
+  }
+
+  function fichaCaptcha(){
+    // Devuelve el token, o null si no hay captcha configurado o falló.
+    // Nunca rechaza: si Cloudflare no responde, seguimos sin token y
+    // decide Supabase. Mejor eso que dejar a un cliente sin chat.
+    return cargarTurnstile().then(function(ts){
+      if (!ts) return null;
+      return new Promise(function(listo){
+        // Fuera de la pantalla, pero renderizado: con display:none
+        // Turnstile no llega a ejecutarse.
+        var caja = document.createElement('div');
+        caja.style.cssText = 'position:absolute;left:-9999px;top:0;'
+                           + 'width:300px;height:65px;overflow:hidden';
+        document.body.appendChild(caja);
+
+        var listoYa = false;
+        function terminar(token){
+          if (listoYa) return;
+          listoYa = true;
+          clearTimeout(cortar);
+          setTimeout(function(){ try { caja.remove(); } catch(e){} }, 100);
+          listo(token);
+        }
+        var cortar = setTimeout(function(){
+          if (window.console) console.warn('chat: Turnstile no respondió a tiempo');
+          terminar(null);
+        }, 10000);
+
+        try {
+          ts.render(caja, {
+            sitekey: TURNSTILE_KEY,
+            callback: function(token){ terminar(token); },
+            'error-callback': function(e){
+              if (window.console) console.warn('chat: Turnstile error', e);
+              terminar(null);
+            },
+            'timeout-callback': function(){ terminar(null); }
+          });
+        } catch(e){
+          if (window.console) console.warn('chat: no pude renderizar Turnstile', e);
+          terminar(null);
+        }
+      });
+    }).catch(function(){ return null; });
+  }
+
   function entrar(){
     // Sesión anónima. Se guarda en sessionStorage para que sobreviva a
     // ir hasta /menu y volver, pero no de una visita a la otra.
@@ -1208,10 +1286,18 @@ function registrarEvento(tipo, detalle){
       sesion = guardada;
       return Promise.resolve();
     }
-    return fetch(SB_URL + '/auth/v1/signup', {
-      method: 'POST',
-      headers: { 'apikey': SB_KEY, 'Content-Type': 'application/json' },
-      body: '{}'
+    return fichaCaptcha().then(function(token){
+      if (TURNSTILE_KEY && window.console){
+        console.log('chat: captcha', token ? 'token OK' : 'SIN TOKEN');
+      }
+      var cuerpoAuth = token
+        ? JSON.stringify({ gotrue_meta_security: { captcha_token: token } })
+        : '{}';
+      return fetch(SB_URL + '/auth/v1/signup', {
+        method: 'POST',
+        headers: { 'apikey': SB_KEY, 'Content-Type': 'application/json' },
+        body: cuerpoAuth
+      });
     })
     .then(function(r){ if(!r.ok) throw new Error('auth ' + r.status); return r.json(); })
     .then(function(d){
@@ -1331,6 +1417,16 @@ function registrarEvento(tipo, detalle){
     e.preventDefault();
     var t = campo.value.trim();
     if (!t || ocupado) return;
+
+    // Trampa: un campo invisible que una persona no puede completar.
+    // Si viene lleno, es un script rellenando el formulario. No avisamos
+    // nada: cuanto menos sepa, menos se adapta.
+    var hp = document.getElementById('chHp');
+    if (hp && hp.value){ campo.value = ''; return; }
+
+    // Nadie abre el chat y escribe una pregunta en menos de un segundo.
+    if (Date.now() - abiertoEn < 1000){ campo.value = ''; return; }
+
     campo.value = '';
     enviar(t);
   });
@@ -1339,6 +1435,7 @@ function registrarEvento(tipo, detalle){
   function abrir(){
     caja.classList.add('abierta');
     burb.classList.add('oculto');
+    if (!abiertoEn) abiertoEn = Date.now();
     if (!saludado){
       saludado = true;
       registrarEvento('chat_abierto', null);
